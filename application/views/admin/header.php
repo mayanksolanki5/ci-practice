@@ -17,7 +17,6 @@
             $session = $this->session->userdata('id');
         ?>
         <?php if($session): ?>
-            <a class="btn btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
             <a class="btn btn-info" href="<?php echo base_url().'/Admin/logout'; ?>">Log-out</a>
         <?php endif; ?>
 

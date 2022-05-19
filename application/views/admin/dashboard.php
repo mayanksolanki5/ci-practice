@@ -8,6 +8,8 @@
 </div>
 
 <div class="container">
+    <a class="btn btn-info" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
+
     <div>
         <table class="table table-striped">
             <thead>
