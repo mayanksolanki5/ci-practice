@@ -21,7 +21,8 @@
 
         <div class="form-group">
             <?php echo form_submit(['class' => 'btn btn-primary my-2', 'value' => "Add"]); ?>
-            <?php echo form_reset(['class' => 'btn btn-secondary my-2', 'value' => "reset"]); ?>
+            <?php // echo form_reset(['class' => 'btn btn-secondary my-2', 'value' => "reset"]); ?>
+            <a class="btn btn-info" href="<?php echo base_url().'/admin/welcome'; ?>">Back</a>
         </div>
 
 </div>
