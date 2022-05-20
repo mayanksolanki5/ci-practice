@@ -14,6 +14,12 @@
         </div>
 
         <div class="form-group">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>        
+            <?php echo form_input(['class' => 'form-control', 'type' => 'email', 'placeholder' => 'email', 'name' => 'email', 'value' => set_value('email')]); ?>
+            <?php echo form_error('email') ?>
+        </div>
+
+        <div class="form-group">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <?php echo form_password(['class' => 'form-control', 'placeholder' => 'Password', 'name' => 'password', 'value' => set_value('password')]); ?>
             <?php echo form_error('password') ?>

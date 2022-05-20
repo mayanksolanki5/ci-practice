@@ -9,6 +9,7 @@
 
 <div class="container">
     <a class="btn btn-info" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
+    <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->
 
     <div>
         <table class="table table-striped">
