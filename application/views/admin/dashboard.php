@@ -6,7 +6,7 @@
     <div class="alert alert-success"><?php echo $success; ?></div>
     <?php endif; ?>
 </div>
-<?php echo extension_loaded('mcrypt') ? 'Yup' : 'Nope'; ?>
+<?php // echo extension_loaded('mcrypt') ? 'Yup' : 'Nope'; ?>
 <div class="container my-3">
     <div class="container d-flex justify-content-between bg-dark center my-3 py-2">
         <div></div>
@@ -14,6 +14,7 @@
         <div>        
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
+            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
         </div>
     </div>
     <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->
