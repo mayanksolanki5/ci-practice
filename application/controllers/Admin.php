@@ -251,6 +251,18 @@ class Admin extends MY_controller{
         
     // }
     
+
+
+    function pdf(){
+        $this->load->library('pdf');
+
+        $this->load->model('Login_model');
+        $articles['articles'] = $this->Login_model->articleList();
+
+        $html = $this->load->view('GeneratePdfView', $articles, true);
+        $this->pdf->createPDF($html, 'mypdf', false);
+    }
+    
 }
 
 ?>

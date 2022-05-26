@@ -37,7 +37,7 @@
             <?php echo form_submit(['class' => 'btn btn-primary my-2', 'value' => "Login"]); ?>
             <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
             <?php echo form_reset(['class' => 'btn btn-secondary my-2', 'value' => "reset"]); ?>
-            <?php echo anchor('admin/register', 'SignUp', 'class="btn btn-info"'); ?>
+            <?php echo anchor('index.php/admin/register', 'SignUp', 'class="btn btn-info"'); ?>
         </div>
 
 </div>

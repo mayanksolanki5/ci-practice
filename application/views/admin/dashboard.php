@@ -6,12 +6,15 @@
     <div class="alert alert-success"><?php echo $success; ?></div>
     <?php endif; ?>
 </div>
-
+<?php echo extension_loaded('mcrypt') ? 'Yup' : 'Nope'; ?>
 <div class="container my-3">
     <div class="container d-flex justify-content-between bg-dark center my-3 py-2">
         <div></div>
-        <h4 style="color:white">Articles Table</h4>
-        <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
+        <div><h4 style="color:white">Articles Table</h4></div>
+        <div>        
+            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
+            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
+        </div>
     </div>
     <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->
 
@@ -29,11 +32,12 @@
 
                 <?php if(count($articles)): ?>
                 <?php foreach($articles as $article): ?>
-                    <tr>
+                    <tr id="<?php echo $article->id ?>">
                         <td><?php echo $article->id ?></td>
                         <td><?php echo $article->article_title ?></td>
                         <td><a href="<?php echo base_url().'/Admin/edit/'.$article->id ?>" class="btn btn-secondary">Edit</a></td>
-                        <td><a href="<?php echo base_url().'/Admin/delete/'.$article->id ?>" class="btn btn-danger">Delete</a></td>
+                        <!-- <td><a href="<?php echo base_url().'/Admin/delete/'.$article->id ?>" class="btn btn-danger">Delete</a></td> -->
+                        <td><a class="btn btn-danger remove">Delete</a></td>
                     </tr>
                 <?php endforeach; ?>
                         <?php // else: ?>
@@ -51,5 +55,42 @@
         $('#article-table').DataTable();
     // });
 </script>
+
+<script>
+     $(".remove").click(function(){
+        var id = $(this).parents("tr").attr("id");
+       swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel plx!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          $.ajax({
+             url: '/Admin/delete/'+id,
+             type: 'DELETE',
+             error: function() {
+                alert('Something is wrong');
+             },
+             success: function(data) {
+                  $("#"+id).remove();
+                  swal("Deleted!", "Your imaginary file has been deleted.", "success");
+             }
+          });
+        } else {
+          swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
+      });
+     
+    });
+</script>
+
+
 
 <?php include('footer.php'); ?>
