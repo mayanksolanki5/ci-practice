@@ -15,7 +15,14 @@
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
         </div>
+    </div>
+    <div class="col-md-12" id="importFrm" style="display: none;">
+        <form action="<?php echo base_url('members/import'); ?>" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+        </form>
     </div>
     <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->
 
@@ -90,6 +97,17 @@
       });
      
     });
+</script>
+
+<script>
+    function formToggle(ID){
+        var element = document.getElementById(ID);
+        if(element.style.display === "none"){
+            element.style.display = "block";
+        }else{
+            element.style.display = "none";
+        }
+    }
 </script>
 
 

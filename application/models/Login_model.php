@@ -43,6 +43,12 @@ class Login_model extends CI_Model{
         $this->db->insert('articles', $formArr);
     }
 
+    // for importing csv file 
+    public function insertCSV($formArr = array())
+    {
+        $this->db->insert('articles', $formArr);
+    }
+
 
     public function deleteArticle($id)
     {
