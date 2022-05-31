@@ -69,6 +69,17 @@ class Login_model extends CI_Model{
         $this->db->update('articles', $formArr);
     }
 
+
+    function excelexport()
+    {
+        $this->db->order_by("id", "DESC");
+
+        $user_id = $this->session->userdata('id'); 
+        $query = $this->db->where('user_id', $user_id);
+
+        $query = $this->db->get("articles");
+        return $query->result();
+    }
 }
 
 

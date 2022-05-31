@@ -15,6 +15,7 @@
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
             <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
+            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a>
             <a href="javascript:void(0);" class="btn btn-primary" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
         </div>
     </div>
