@@ -1,9 +1,13 @@
 <?php include('header.php'); ?>
 
-<div class="container">
+<div class="container" id="sessionMSG">
     <?php $success = $this->session->userdata('success');
         if($success): ?>
     <div class="alert alert-success"><?php echo $success; ?></div>
+    <?php endif; ?>
+    <?php $failure = $this->session->userdata('failure');
+        if($failure): ?>
+    <div class="alert alert-danger"><?php echo $failure; ?></div>
     <?php endif; ?>
 </div>
 <?php // echo extension_loaded('mcrypt') ? 'Yup' : 'Nope'; ?>
@@ -14,9 +18,9 @@
         <div>        
             <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
             <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
-            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
-            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a>
-            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/mail'; ?>">Mail</a>
+            <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a> -->
+            <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a> -->
+            <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/mail'; ?>">Mail</a> -->
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -28,22 +32,23 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Mail CSV or XL as your Requirements</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
                     <div class="modal-body">
-                        <?php echo form_open('practice1/mail', 'class="email" id="myform"'); ?>
+                        <?php echo form_open('practice1/csvORxl', 'class="email" id="myform"'); ?>
 
                         <div class="form-group">
                             <?php echo form_label('Email', 'email'); ?>                     
                             <?php echo form_input(['class' => 'form-control', 'placeholder' => 'Enter Email', 'name' => 'email']); ?>
+                            <label for="email" class="error" style="color:red"></label>                     
                         </div>
                         <div class="form-group">
                             <?php
-                                $data = array('name' => 'filetype', 'id' => 'csv', 'value' => 'csv', 'checked' => FALSE, 'style' => 'margin:10px');
+                                $data = array('name' => 'filetype', 'id' => 'csv', 'value' => 'csv', 'checked' => TRUE, 'style' => 'margin:10px');
                                 echo form_radio($data);
                                 echo form_label('CSV', 'csv');
                             ?>
@@ -159,6 +164,33 @@
             element.style.display = "none";
         }
     }
+</script>
+<!-- jquery validation cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $("#myform").validate({
+        rules: {
+            email: {
+                required: true,
+                email:true,
+            },
+        },
+        messages: {
+            email: {
+                required: "email is required",
+                email: "Please enter valid Email!"
+            },
+        },
+        submitHandler: function (form) {
+            form.submit();
+        },
+    });
+</script>
+
+<script> 
+    setTimeout(function() {
+        $('#sessionMSG').hide('fast');
+    }, 5000);
 </script>
 
 

@@ -5,7 +5,7 @@
 <div class="container">
     <h2>Admin Login</h2>
     
-    <div class="container">
+    <div class="container" id="sessionMSG">
         <?php $success = $this->session->userdata('success');
             if($success): ?>
             <div class="alert alert-success"><?php echo $success; ?></div>
@@ -42,7 +42,11 @@
 
 </div>
 
-
+<script> 
+    setTimeout(function() {
+        $('#sessionMSG').hide('fast');
+    }, 5000);
+</script>
 
 
 <?php include('footer.php') ?>

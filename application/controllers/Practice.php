@@ -73,8 +73,9 @@ class Practice extends MY_controller{
         ob_end_clean();
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename='.$file_name);
-        // print_r($object_writer->save('php://output'));
-        $object_writer->save('php://output');
+                    // saves at specific folder 
+        $object_writer->save((str_replace(__FILE__,'files/'.$file_name.'.xlsx',__FILE__)));
+        // $object_writer->save('php://output');
     }
 
 
