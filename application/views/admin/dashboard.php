@@ -12,11 +12,61 @@
         <div></div>
         <div><h4 style="color:white">Articles Table</h4></div>
         <div>        
-            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
-            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
-            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
-            <a class="btn brn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a>
-            <a href="javascript:void(0);" class="btn btn-primary" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
+            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Admin/addArticle'; ?>">Add Article</a>
+            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Admin/pdf'; ?>">Download PDF</a>
+            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a>
+            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a>
+            <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/mail'; ?>">Mail</a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Mail Option
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <?php echo form_open('practice1/mail', 'class="email" id="myform"'); ?>
+
+                        <div class="form-group">
+                            <?php echo form_label('Email', 'email'); ?>                     
+                            <?php echo form_input(['class' => 'form-control', 'placeholder' => 'Enter Email', 'name' => 'email']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                                $data = array('name' => 'filetype', 'id' => 'csv', 'value' => 'csv', 'checked' => FALSE, 'style' => 'margin:10px');
+                                echo form_radio($data);
+                                echo form_label('CSV', 'csv');
+                            ?>
+
+                            <?php
+                                $data = array('name' => 'filetype', 'id' => 'xlsx', 'value' => 'xlsx', 'checked' => FALSE, 'style' => 'margin:10px');
+                                echo form_radio($data);
+                                echo form_label('XLSX', 'xlsx');
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="form-group">
+                            <?php echo form_submit(['class' => 'btn btn-primary my-2', 'value' => "Submit"]); ?>
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary">Send Mail</button> -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
         </div>
     </div>
     <div class="col-md-12" id="importFrm" style="display: none;">
@@ -25,7 +75,7 @@
             <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
         </form>
     </div>
-    <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->
+    <!-- <a class="btn btn-danger" href="<?php echo base_url().'/Admin/sendMail'; ?>">Send Mail</a> -->    
 
     <div>
         <table class="table table-striped" id="article-table">

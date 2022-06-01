@@ -73,8 +73,99 @@ class Practice extends MY_controller{
         ob_end_clean();
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename='.$file_name);
+        // print_r($object_writer->save('php://output'));
         $object_writer->save('php://output');
     }
+
+
+                            // with email library
+    public function mail()
+    {
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => '180320107106.ce.mayank@gmail.com', // change it to yours
+            'smtp_pass' => '****', // change it to yours
+            'smtp_crypto' => 'ssl',
+            'mailtype' => 'text',
+            'charset' => 'iso-8859-1',
+            'wordwrap' => TRUE
+          );
+
+        // $message = "\n\t\t\tRegistration Details" . "\n\n\t\t\t\t\tThank You For Register Your Self!";
+        $message = "Thank You For Register Your Self!";
+        
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('180320107106.ce.mayank@gmail.com'); // change it to yours
+        $this->email->to('mayanksolanki5401@gmail.com');// change it to yours
+        $this->email->subject('Learning');
+        $this->email->message($message);
+        $this->email->attach("D:\NewFolder\html.png");
+
+        if ($this->email->send()) {
+
+            // $this->session->set_flashdata('success', 'Record added Successfully!');
+            $this->session->set_flashdata('success', 'Mail Sent Successfully!');            
+            redirect(base_url().'/admin/welcome');    
+
+        } else {
+            show_error($this->email->print_debugger());
+        }
+
+    }
+
+                                // PHP Mailer
+    // public function mail()
+    // {
+    //     // Load PHPMailer library
+    //     $this->load->library('phpmailer_lib');
+
+    //     // PHPMailer object
+    //     $mail = $this->phpmailer_lib->load();
+        
+    //     // SMTP configuration
+    //     $mail->isSMTP();
+    //     $mail->Host     = 'smtp.googlemail.com';
+    //     $mail->SMTPAuth = true;
+    //     $mail->Username = '180320107106.ce.mayank@gmail.com';
+    //     $mail->Password = '****';
+    //     $mail->SMTPSecure = 'ssl';
+    //     $mail->Port     = 465;
+        
+    //     $mail->setFrom('info@example.com', 'CodexWorld');
+    //     $mail->addReplyTo('info@example.com', 'CodexWorld');
+        
+    //     // Add a recipient
+    //     $mail->addAddress('180320107106.ce.mayank@gmail.com');
+        
+    //     // Add cc or bcc 
+    //     $mail->addCC('cc@example.com');
+    //     $mail->addBCC('bcc@example.com');
+        
+    //     // Email subject
+    //     $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+        
+    //     // Set email format to HTML
+    //     $mail->isHTML(true);
+        
+    //     // Email body content
+    //     $mailContent = "<h1>Send HTML Email using SMTP in CodeIgniter</h1>
+    //         <p>This is a test email sending using SMTP mail server with PHPMailer.</p>";
+    //     $mail->Body = $mailContent;
+        
+    //     // Send email
+    //     if(!$mail->send()){
+    //         echo 'Message could not be sent.';
+    //         echo 'Mailer Error: ' . $mail->ErrorInfo;
+    //     }else{
+    //         echo 'Message has been sent';
+    //     }
+    // }
+            
+        
+    
      
 }
 

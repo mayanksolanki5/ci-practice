@@ -225,7 +225,7 @@ class Admin extends MY_controller{
     //     //     'smtp_host' => 'smtp.gmail.com',
     //     //     'smtp_port' => 465,
     //     //     'smtp_user' => '180320107106.ce.mayank@gmail.com', // change it to yours
-    //     //     'smtp_pass' => 'mayank.5401@', // change it to yours
+    //     //     'smtp_pass' => '****', // change it to yours
     //     //     'smtp_crypto' => 'ssl',
     //     //     'mailtype' => 'text',
     //     //     'charset' => 'iso-8859-1',
