@@ -21,6 +21,7 @@
             <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportCSV'; ?>">Export CSV</a> -->
             <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/exportexcel'; ?>">Export XL</a> -->
             <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice/mail'; ?>">Mail</a> -->
+            <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url().'/Practice2/cronjob'; ?>">Cronjob</a> -->
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -88,6 +89,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Article Title</th>
+                    <th>Article Body</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -99,6 +101,7 @@
                     <tr id="<?php echo $article->id ?>">
                         <td><?php echo $article->id ?></td>
                         <td><?php echo $article->article_title ?></td>
+                        <td><?php echo $article->article_body ?></td>
                         <td><a href="<?php echo base_url().'/Admin/edit/'.$article->id ?>" class="btn btn-secondary">Edit</a></td>
                         <!-- <td><a href="<?php echo base_url().'/Admin/delete/'.$article->id ?>" class="btn btn-danger">Delete</a></td> -->
                         <td><a class="btn btn-danger remove">Delete</a></td>
